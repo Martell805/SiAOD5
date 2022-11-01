@@ -6,6 +6,8 @@
 using namespace std;
 
 void test() {
+    cout << "PBB Tree test" << endl;
+
     auto* root = new PBBTNode("1000000005", 0, nullptr);
     root->add("1000000003", 1);
     root->add("1000000004", 2);
@@ -14,7 +16,11 @@ void test() {
 
     root->print();
 
+    cout << root->find("1000000004")->getValue() << ", should be 2" << endl;
+
     cout << "--------------" << endl;
+
+    cout << "D Tree test" << endl;
 
     auto* rootD = new DTNode("1000000005", 0, nullptr);
     rootD->add("1000000003", 1);
@@ -23,6 +29,9 @@ void test() {
     rootD->add("1000000006", 4);
 
     rootD->print();
+
+    cout << rootD->find("1000000004")->getValue() << ", should be 2" << endl;
+
 }
 
 void task1() {

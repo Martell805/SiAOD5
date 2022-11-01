@@ -21,7 +21,7 @@ void PBBTNode::add(char key_[10], int value_) {
 }
 
 PBBTNode* PBBTNode::find(char key_[10]) {
-    if(strcmp(this->key, key) == 0){
+    if(strcmp(this->key, key_) == 0){
         return this;
     }
 
@@ -31,7 +31,7 @@ PBBTNode* PBBTNode::find(char key_[10]) {
     }
 
     PBBTNode* answerRight = nullptr;
-    if(this->left != nullptr){
+    if(this->right != nullptr){
         answerRight = (PBBTNode*)this->right->find(key_);
     }
 
