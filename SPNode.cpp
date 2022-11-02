@@ -39,7 +39,7 @@ SPNode* SPNode::find(char key_[10]) {
             return result;
         }
 
-        return leftChild->find(key);
+        return leftChild->find(key_);
     }
 
     if(curKey < reqKey) {
