@@ -1,37 +1,38 @@
 #include <iostream>
 
-#include "PBBTNode.h"
 #include "DTNode.h"
+#include "SPNode.h"
 
 using namespace std;
 
 void test() {
-    cout << "PBB Tree test" << endl;
+//    cout << "D Tree test" << endl;
+//
+//    auto* root = new DTNode("1000000005", 0, nullptr);
+//    root->add("1000000003", 1);
+//    root->add("1000000004", 2);
+//    root->add("1000000002", 3);
+//    root->add("1000000006", 4);
+//
+//    root->print();
+//
+//    cout << root->find("1000000004")->getValue() << ", should be 2" << endl;
+//
+//    cout << "--------------" << endl;
 
-    auto* root = new PBBTNode("1000000005", 0, nullptr);
-    root->add("1000000003", 1);
-    root->add("1000000004", 2);
-    root->add("1000000002", 3);
-    root->add("1000000006", 4);
+    cout << "SP Tree test" << endl;
 
-    root->print();
+    auto* rootSP = new SPNode("1000000005", 0, nullptr);
+    rootSP->add("1000000003", 1);
+    rootSP->add("1000000004", 2);
+    rootSP->add("1000000002", 3);
+    rootSP->add("1000000006", 4);
 
-    cout << root->find("1000000004")->getValue() << ", should be 2" << endl;
+    rootSP->print();
 
-    cout << "--------------" << endl;
+    cout << rootSP->find("1000000004")->getValue() << ", should be 2" << endl;
 
-    cout << "D Tree test" << endl;
-
-    auto* rootD = new DTNode("1000000005", 0, nullptr);
-    rootD->add("1000000003", 1);
-    rootD->add("1000000004", 2);
-    rootD->add("1000000002", 3);
-    rootD->add("1000000006", 4);
-
-    rootD->print();
-
-    cout << rootD->find("1000000004")->getValue() << ", should be 2" << endl;
-
+    rootSP->print();
 }
 
 void task1() {
@@ -87,8 +88,9 @@ void task1() {
 
 int main() {
     int n;
-    cout << "Choose 0 for test or 1 for task1:" << endl;
-    cin >> n;
+//    cout << "Choose 0 for test or 1 for task1:" << endl;
+//    cin >> n;
+    n = 0;
 
     switch(n){
         case 0:

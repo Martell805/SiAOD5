@@ -3,20 +3,39 @@
 
 #include "iostream"
 #include "cstring"
-#include "TNode.h"
 
 using namespace std;
 
-class DTNode: public TNode {
-public:
-    explicit DTNode(char key_[10], int value_, DTNode* parent_);
+class DTNode {
+protected:
+    DTNode *parent = nullptr;
+    DTNode *left = nullptr;
+    DTNode *right = nullptr;
+    char key[10]{};
+    int value;
 protected:
     static long long KeyToInt(const char key_[10]);
 public:
+    explicit DTNode(char key_[10], int value_, DTNode* parent_);
+public:
+    [[nodiscard]] DTNode *getParent() const;
+    void setParent(DTNode *parent_);
+    [[nodiscard]] DTNode *getLeft() const;
+    void setLeft(DTNode *left_);
+    [[nodiscard]] DTNode *getRight() const;
+    void setRight(DTNode *right_);
+    [[nodiscard]] char* getKey() const;
+    [[nodiscard]] int getValue() const;
+    void setValue(int value_);
+public:
+    DTNode* getRightmost();
+    DTNode* getLeftmost();
+public:
     void add(char key_[10], int value_);
-    DTNode* find(char key_[10]);
+
+    virtual DTNode* find(char key_[10]);
     DTNode* del(char key_[10]);
+    void print(int tabLevel = 0) const;
 };
 
-
-#endif
+#endif //SIAOD5_DTNODE_H
