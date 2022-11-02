@@ -27,6 +27,7 @@ public:
     [[nodiscard]] char* getKey() const;
     [[nodiscard]] int getValue() const;
     void setValue(int value_);
+    DTNode* getRoot();
 public:
     DTNode* getRightmost();
     DTNode* getLeftmost();

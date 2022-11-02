@@ -32,6 +32,7 @@ void test() {
 
     cout << rootSP->find("1000000004")->getValue() << ", should be 2" << endl;
 
+    rootSP = (SPNode*)rootSP->getRoot();
     rootSP->print();
 }
 

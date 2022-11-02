@@ -131,3 +131,11 @@ long long DTNode::KeyToInt(const char key_[10]) {
 
     return result;
 }
+
+DTNode *DTNode::getRoot() {
+    if(this->parent == nullptr){
+        return this;
+    }
+
+    return this->parent;
+}
