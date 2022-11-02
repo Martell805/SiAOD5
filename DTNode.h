@@ -34,7 +34,7 @@ public:
 public:
     void add(char key_[10], int value_);
 
-    virtual DTNode* find(char key_[10]);
+    DTNode* find(char key_[10]);
     DTNode* del(char key_[10]);
     void print(int tabLevel = 0) const;
 };

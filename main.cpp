@@ -22,19 +22,22 @@ void test() {
 
     cout << "SP Tree test" << endl;
 
-    auto* rootSP = new SPNode("1000000005", 0, nullptr);
-    rootSP->add("1000000002", 1);
-    rootSP->add("1000000003", 2);
-    rootSP->add("1000000004", 3);
-    rootSP->add("1000000001", 4);
-    rootSP->add("1000000006", 5);
+    auto* rootSP = new SPNode("1000000010", 0, nullptr);
+    rootSP->add("1000000005", 1);
+    rootSP->add("1000000011", 2);
+    rootSP->add("1000000003", 3);
+    rootSP->add("1000000007", 4);
+    rootSP->add("1000000002", 5);
+    rootSP->add("1000000004", 6);
+    rootSP->add("1000000006", 7);
+    rootSP->add("1000000008", 8);
 
     rootSP->print();
 
-    cout << rootSP->find("1000000004")->getValue() << ", should be 3" << endl;
-
-    rootSP = (SPNode*)rootSP->getRoot();
-    rootSP->print();
+//    cout << rootSP->find("1000000004")->getValue() << ", should be 3" << endl;
+//
+//    rootSP = (SPNode*)rootSP->getRoot();
+//    rootSP->print();
 
 //    cout << rootSP->find("1000000001")->getValue() << ", should be 4" << endl;
 //

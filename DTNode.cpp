@@ -79,6 +79,11 @@ void DTNode::add(char key_[10], int value_) {
     long long newKey = DTNode::KeyToInt(key_);
     long long curKey = DTNode::KeyToInt(this->key);
 
+    if(newKey == curKey) {
+        this->value = value_;
+        return;
+    }
+
     if(newKey < curKey) {
         if(this->left == nullptr) {
             this->setLeft(new DTNode(key_, value_, this));

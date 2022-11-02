@@ -6,8 +6,6 @@ SPNode* SPNode::find(char key_[10]) {
     long long reqKey = SPNode::KeyToInt(key_);
     long long curKey = SPNode::KeyToInt(this->key);
 
-    cout << reqKey << " " << curKey << endl;
-
     if(curKey == reqKey){
         return this;
     }
@@ -26,7 +24,7 @@ SPNode* SPNode::find(char key_[10]) {
         }
 
         if (leftChild->getLeft() != nullptr and SPNode::KeyToInt(leftChild->getLeft()->getKey()) == reqKey) {
-            auto *result = (SPNode *) leftChild->getLeft();
+            auto *result = (SPNode*) leftChild->getLeft();
 
             this->rightRotate();
             leftChild->rightRotate();
@@ -34,7 +32,7 @@ SPNode* SPNode::find(char key_[10]) {
         }
 
         if (leftChild->getRight() != nullptr and SPNode::KeyToInt(leftChild->getRight()->getKey()) == reqKey) {
-            auto *result = (SPNode *) leftChild->getRight();
+            auto *result = (SPNode*) leftChild->getRight();
 
             leftChild->leftRotate();
             this->rightRotate();
@@ -67,7 +65,7 @@ SPNode* SPNode::find(char key_[10]) {
         }
 
         if (rightChild->getRight() != nullptr and SPNode::KeyToInt(rightChild->getRight()->getKey()) == reqKey) {
-            auto *result = (SPNode *) rightChild->getLeft();
+            auto *result = (SPNode *) rightChild->getRight();
 
             this->leftRotate();
             rightChild->leftRotate();

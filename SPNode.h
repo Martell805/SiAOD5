@@ -14,7 +14,7 @@ public:
     void rightRotate();
     void leftRotate();
 public:
-    SPNode* find(char key_[10]) override;
+    SPNode* find(char key_[10]);
 };
 
 
