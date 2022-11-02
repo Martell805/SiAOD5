@@ -36,10 +36,10 @@ void test() {
     rootSP = (SPNode*)rootSP->getRoot();
     rootSP->print();
 
-    cout << rootSP->find("1000000001")->getValue() << ", should be 4" << endl;
-
-    rootSP = (SPNode*)rootSP->getRoot();
-    rootSP->print();
+//    cout << rootSP->find("1000000001")->getValue() << ", should be 4" << endl;
+//
+//    rootSP = (SPNode*)rootSP->getRoot();
+//    rootSP->print();
 }
 
 void task1() {

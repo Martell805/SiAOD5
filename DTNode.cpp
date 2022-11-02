@@ -137,5 +137,5 @@ DTNode *DTNode::getRoot() {
         return this;
     }
 
-    return this->parent;
+    return this->parent->getRoot();
 }

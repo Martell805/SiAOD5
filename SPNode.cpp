@@ -6,6 +6,8 @@ SPNode* SPNode::find(char key_[10]) {
     long long reqKey = SPNode::KeyToInt(key_);
     long long curKey = SPNode::KeyToInt(this->key);
 
+    cout << reqKey << " " << curKey << endl;
+
     if(curKey == reqKey){
         return this;
     }
@@ -72,7 +74,7 @@ SPNode* SPNode::find(char key_[10]) {
             return result;
         }
 
-        return rightChild->find(key);
+        return rightChild->find(key_);
     }
 
     return nullptr;
