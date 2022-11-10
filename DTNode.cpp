@@ -124,7 +124,63 @@ DTNode *DTNode::find(char key_[10]) {
 }
 
 DTNode *DTNode::del(char key_[10]) {
-    return nullptr;
+    long long newKey = DTNode::KeyToInt(key_);
+    long long curKey = DTNode::KeyToInt(this->key);
+
+    if (newKey != curKey) {
+        DTNode *newNode = this->find(key_);
+
+        if(newNode == nullptr){
+            return nullptr;
+        }
+
+        return newNode->del(key_);
+    }
+
+    if(this->left == nullptr and this->right == nullptr) {
+        if(this->parent->getLeft() == this) {
+            this->parent->setLeft(nullptr);
+        } else {
+            this->parent->setRight(nullptr);
+        }
+
+        this->setParent(nullptr);
+        return this;
+    }
+
+    if(this->left == nullptr) {
+        if(this->parent->getLeft() == this) {
+            this->parent->setLeft(this->right);
+        } else {
+            this->parent->setRight(this->right);
+        }
+
+        this->setParent(nullptr);
+        return this;
+    }
+
+    if(this->right == nullptr) {
+        if(this->parent->getLeft() == this) {
+            this->parent->setLeft(this->left);
+        } else {
+            this->parent->setRight(this->left);
+        }
+
+        this->setParent(nullptr);
+        return this;
+    }
+
+    DTNode *newNode = this->left->getRightmost();
+    newNode->setRight(this->right);
+
+    if(this->parent->getLeft() == this) {
+        this->parent->setLeft(newNode);
+    } else {
+        this->parent->setRight(newNode);
+    }
+
+    this->setParent(nullptr);
+    return this;
 }
 
 long long DTNode::KeyToInt(const char key_[10]) {

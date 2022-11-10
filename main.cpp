@@ -6,19 +6,23 @@
 using namespace std;
 
 void test() {
-//    cout << "D Tree test" << endl;
-//
-//    auto* root = new DTNode("1000000005", 0, nullptr);
-//    root->add("1000000003", 1);
-//    root->add("1000000004", 2);
-//    root->add("1000000002", 3);
-//    root->add("1000000006", 4);
-//
-//    root->print();
-//
-//    cout << root->find("1000000004")->getValue() << ", should be 2" << endl;
-//
-//    cout << "--------------" << endl;
+    cout << "D Tree test" << endl;
+
+    auto* root = new DTNode("1000000005", 0, nullptr);
+    root->add("1000000003", 1);
+    root->add("1000000004", 2);
+    root->add("1000000002", 3);
+    root->add("1000000006", 4);
+
+    root->print();
+
+    cout << root->find("1000000004")->getValue() << ", should be 2" << endl;
+
+    cout << root->del("1000000003")->getValue() << ", should be 1" << endl;;
+
+    root->print();
+
+    cout << "--------------" << endl;
 
     cout << "SP Tree test" << endl;
 
@@ -34,15 +38,15 @@ void test() {
 
     rootSP->print();
 
-//    cout << rootSP->find("1000000004")->getValue() << ", should be 3" << endl;
-//
-//    rootSP = (SPNode*)rootSP->getRoot();
-//    rootSP->print();
+    cout << rootSP->find("1000000004")->getValue() << ", should be 6" << endl;
 
-//    cout << rootSP->find("1000000001")->getValue() << ", should be 4" << endl;
-//
-//    rootSP = (SPNode*)rootSP->getRoot();
-//    rootSP->print();
+    rootSP = (SPNode*)rootSP->getRoot();
+    rootSP->print();
+
+    cout << rootSP->find("1000000011")->getValue() << ", should be 2" << endl;
+
+    rootSP = (SPNode*)rootSP->getRoot();
+    rootSP->print();
 }
 
 void task1() {
