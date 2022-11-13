@@ -9,6 +9,10 @@ DTNode *DTNode::getLeft() const {
 }
 
 void DTNode::setLeft(DTNode *left_) {
+    if(this->left != nullptr) {
+        this->left->setParent(nullptr);
+    }
+
     this->left = left_;
 
     if(this->left == nullptr) {
@@ -23,6 +27,10 @@ DTNode *DTNode::getRight() const {
 }
 
 void DTNode::setRight(DTNode *right_) {
+    if(this->right != nullptr) {
+        this->right->setParent(nullptr);
+    }
+
     this->right = right_;
 
     if(this->right == nullptr) {
@@ -144,7 +152,6 @@ DTNode *DTNode::del(char key_[10]) {
             this->parent->setRight(nullptr);
         }
 
-        this->setParent(nullptr);
         return this;
     }
 
@@ -155,7 +162,6 @@ DTNode *DTNode::del(char key_[10]) {
             this->parent->setRight(this->right);
         }
 
-        this->setParent(nullptr);
         return this;
     }
 
@@ -166,12 +172,23 @@ DTNode *DTNode::del(char key_[10]) {
             this->parent->setRight(this->left);
         }
 
-        this->setParent(nullptr);
         return this;
     }
 
     DTNode *newNode = this->left->getRightmost();
     newNode->setRight(this->right);
+
+    if(newNode != this->left) {
+        newNode->parent->setRight(newNode->left);
+    }
+
+    this->setLeft(nullptr);
+    this->setRight(nullptr);
+
+    if(this->parent == nullptr) {
+        newNode->setParent(nullptr);
+        return this;
+    }
 
     if(this->parent->getLeft() == this) {
         this->parent->setLeft(newNode);
@@ -179,7 +196,6 @@ DTNode *DTNode::del(char key_[10]) {
         this->parent->setRight(newNode);
     }
 
-    this->setParent(nullptr);
     return this;
 }
 
