@@ -9,12 +9,12 @@ using namespace std;
 
 class SPNode: public DTNode {
 public:
-    SPNode(char key_[10], int value_, SPNode* parent_);
+    SPNode(char key_[10], int value_, SPNode* parent_ = nullptr);
 public:
     void rightRotate();
     void leftRotate();
 public:
-    SPNode* find(char key_[10]);
+    SPNode* find(char key_[10]) override;
 };
 
 

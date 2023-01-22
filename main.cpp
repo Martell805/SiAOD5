@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "DTNode.h"
-#include "SPNode.h"
+#include "DTTree.h"
+#include "SPTree.h"
 
 using namespace std;
 
-void test() {
+void freeTreeTest() {
     cout << "D Tree test" << endl;
 
     auto* root = new DTNode("1000000005", 0, nullptr);
@@ -49,48 +49,88 @@ void test() {
     rootSP->print();
 }
 
+void binTreeTest() {
+    cout << "D Tree test" << endl;
+
+    convertTextToBinary("../testrecords.txt", "../binDTrecords.dat");
+
+    DTTree dtTree("../binDTrecords.dat");
+    dtTree.print();
+
+    cout << dtTree.find("789798677").name << endl;
+    cout << dtTree.find("000000000").name << endl;
+
+    dtTree.del("789798677");
+    dtTree.print();
+
+    cout << "--------------" << endl;
+
+    cout << "SP Tree test" << endl;
+
+    convertTextToBinary("../testrecords.txt", "../binSPrecords.dat");
+
+    SPTree spTree("../binSPrecords.dat");
+    spTree.print();
+
+    cout << spTree.find("789798677").name << endl;
+    cout << spTree.find("000000000").name << endl;
+
+    spTree.print();
+}
+
+void bigTest() {
+
+}
+
 void task1() {
-//    PerfectlyBalancedBinaryTree pBBTree;
+    DTTree tree("../tree.dat", true);
 
     int command;
-    char value;
+    char phone[10], address[50], name[50];
+    PhoneUser phoneUser{};
 
     while(true){
         cout << "Choose operation:" << endl;
         cout << "0 - exit" << endl;
-        cout << "1 - add key" << endl;
-        cout << "2 - get size of tree" << endl;
-        cout << "3 - get leftmost key" << endl;
-        cout << "4 - get depth of key" << endl;
-        cout << "5 - get max leaf" << endl;
-        cout << "6 - print tree" << endl;
+        cout << "1 - add record" << endl;
+        cout << "2 - find record" << endl;
+        cout << "3 - delete record" << endl;
+        cout << "4 - print tree" << endl;
         cin >> command;
 
         switch (command) {
             case 0:
                 return;
             case 1:
-                cout << "Enter key to add:" << endl;
-                cin >> value;
-//                pBBTree.add(value);
+                cout << "Enter phone:" << endl;
+                cin >> phone;
+                strcpy(phoneUser.phone, phone);
+                cout << "Enter adders:" << endl;
+                cin >> address;
+                strcpy(phoneUser.address, address);
+                cout << "Enter name:" << endl;
+                cin >> name;
+                strcpy(phoneUser.name, name);
+
+                tree.add(phoneUser);
                 break;
             case 2:
-//                cout << "Size of tree is " << pBBTree.getSize() << endl;
+                cout << "Enter phone:" << endl;
+                cin >> phone;
+
+                phoneUser = tree.find(phone);
+                cout << "Record is:" << endl;
+                cout << phoneUser.phone << " " << phoneUser.address << " " << phoneUser.name << endl;
                 break;
             case 3:
-//                cout << "Leftmost key of tree is " << pBBTree.getLeftmost() << endl;
+                cout << "Enter phone:" << endl;
+                cin >> phone;
+
+                tree.del(phone);
                 break;
             case 4:
-                cout << "Enter key:" << endl;
-                cin >> value;
-//                cout << "Depth of '" << value << "' is " << pBBTree.getDepth(value) << endl;
-                break;
-            case 5:
-//                cout << "Maximum key of leaf is " << pBBTree.getMaxLeaf() << endl;
-                break;
-            case 6:
-                cout << "Tree: " << endl;
-//                pBBTree.print();
+                cout << "Tree is:" << endl;
+                tree.print();
                 break;
             default:
                 cout << "There is no such a command" << endl;
@@ -100,18 +140,84 @@ void task1() {
     }
 }
 
+void task2() {
+    SPTree tree("../tree.dat", true);
+
+    int command;
+    char phone[10], address[50], name[50];
+    PhoneUser phoneUser{};
+
+    while(true){
+        cout << "Choose operation:" << endl;
+        cout << "0 - exit" << endl;
+        cout << "1 - add record" << endl;
+        cout << "2 - find record" << endl;
+        cout << "3 - delete record" << endl;
+        cout << "4 - print tree" << endl;
+        cin >> command;
+
+        switch (command) {
+            case 0:
+                return;
+            case 1:
+                cout << "Enter phone:" << endl;
+                cin >> phone;
+                strcpy(phoneUser.phone, phone);
+                cout << "Enter adders:" << endl;
+                cin >> address;
+                strcpy(phoneUser.address, address);
+                cout << "Enter name:" << endl;
+                cin >> name;
+                strcpy(phoneUser.name, name);
+
+                tree.add(phoneUser);
+                break;
+            case 2:
+                cout << "Enter phone:" << endl;
+                cin >> phone;
+
+                phoneUser = tree.find(phone);
+                cout << "Record is:" << endl;
+                cout << phoneUser.phone << " " << phoneUser.address << " " << phoneUser.name << endl;
+                break;
+            case 3:
+                cout << "Enter phone:" << endl;
+                cin >> phone;
+
+                tree.del(phone);
+                break;
+            case 4:
+                cout << "Tree is:" << endl;
+                tree.print();
+                break;
+            default:
+                cout << "There is no such a command" << endl;
+                break;
+        }
+        cout << endl;
+    }
+}
+
 int main() {
     int n;
-//    cout << "Choose 0 for test or 1 for task1:" << endl;
-//    cin >> n;
-    n = 0;
+    cout << "Choose 0 for trees test, 1 for trees with files test, 2 for time test and 3 for task with ordinary search tree or 4 for task with Splay tree" << endl;
+    cin >> n;
 
     switch(n){
         case 0:
-            test();
+            freeTreeTest();
             break;
         case 1:
+            binTreeTest();
+            break;
+        case 2:
+            bigTest();
+            break;
+        case 3:
             task1();
+            break;
+        case 4:
+            task2();
             break;
         default:
             cout << "There is no such a task" << endl;

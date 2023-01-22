@@ -2,31 +2,43 @@
 
 void assertFileOpened(const ifstream &file){
     if(file.is_open()) return;
+
+    cout << "Error in opening file" << endl;
     throw -1;
 }
 
 void assertFileOpened(const ofstream &file){
     if(file.is_open()) return;
+
+    cout << "Error in opening file" << endl;
     throw -1;
 }
 
 void assertFileOpened(const fstream &file){
     if(file.is_open()) return;
+
+    cout << "Error in opening file" << endl;
     throw -1;
 }
 
 void assertFileErrors(const ifstream &file){
     if(file.good() or file.eof()) return;
+
+    cout << "Error while working with file" << endl;
     throw -2;
 }
 
 void assertFileErrors(const ofstream &file){
     if(file.good() or file.eof()) return;
+
+    cout << "Error while working with file" << endl;
     throw -2;
 }
 
 void assertFileErrors(const fstream &file){
     if(file.good() or file.eof()) return;
+
+    cout << "Error while working with file" << endl;
     throw -2;
 }
 
@@ -73,12 +85,7 @@ void convertBinaryToText(const string& binFilename, const string& textFilename){
     outfile.close();
 }
 
-PhoneBook::PhoneBook(string filename_): filename(std::move(filename_)) {
-    ofstream file(this->filename);
-    assertFileOpened(file);
-
-    assertFileErrors(file);
-    file.close();
+PhoneBook::PhoneBook(const string &filename_): filename(filename_) {
 }
 
 void PhoneBook::print(){
@@ -134,6 +141,8 @@ void PhoneBook::deleteRecord(int n){
     for(int q = 0; q < users.size() - 1; q++)
         file.write((char*)&users[q], sizeof(PhoneUser));
 
+    this->recordCount--;
+
     assertFileErrors(file);
     file.close();
 }
@@ -144,6 +153,8 @@ void PhoneBook::appendRecord(const PhoneUser &phoneUser){
 
     file.seekg(0, ios::end);
     file.write((char*)&phoneUser, sizeof(PhoneUser));
+
+    this->recordCount++;
 
     assertFileErrors(file);
     file.close();
@@ -158,4 +169,22 @@ void PhoneBook::rewriteRecord(const PhoneUser &phoneUser, int n){
 
     assertFileErrors(file);
     file.close();
+}
+
+void PhoneBook::createFile() {
+    ofstream file(this->filename);
+    assertFileOpened(file);
+
+    this->recordCount = 0;
+
+    assertFileErrors(file);
+    file.close();
+}
+
+int PhoneBook::getRecordCount() {
+    return this->recordCount;
+}
+
+void PhoneBook::increaseRecordCount() {
+    this->recordCount++;
 }

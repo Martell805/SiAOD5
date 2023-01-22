@@ -16,7 +16,7 @@ protected:
 protected:
     static long long KeyToInt(const char key_[10]);
 public:
-    explicit DTNode(char key_[10], int value_, DTNode* parent_);
+    explicit DTNode(char key_[10], int value_, DTNode* parent_ = nullptr);
 public:
     [[nodiscard]] DTNode *getParent() const;
     void setParent(DTNode *parent_);
@@ -34,7 +34,7 @@ public:
 public:
     void add(char key_[10], int value_);
 
-    DTNode* find(char key_[10]);
+    virtual DTNode* find(char key_[10]);
     DTNode* del(char key_[10]);
     void print(int tabLevel = 0) const;
 };

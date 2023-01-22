@@ -21,13 +21,17 @@ void convertBinaryToText(const string& binFilename, const string& textFilename);
 class PhoneBook {
 protected:
     string filename;
+    int recordCount = 0;
 public:
-    explicit PhoneBook(string  filename_);
+    explicit PhoneBook(const string &filename_);
     void print();
     PhoneUser getRecord(int n);
     void deleteRecord(int n);
     void appendRecord(const PhoneUser &phoneUser);
     void rewriteRecord(const PhoneUser &phoneUser, int n);
+    void createFile();
+    int getRecordCount();
+    void increaseRecordCount();
 };
 
 
